@@ -12,7 +12,7 @@ FOOTER_TEXT = 'Powered by <a href="http://getpelican.com">Pelican</a>'
 DISPLAY_CATEGORIES_ON_MENU = True
 LINKS = (('Site', 'http://url.com'), ('Site 2', 'http://another.url.com'))
 SINGLE_AUTHOR = True
-MINT = True
+MINT = False
 GOOGLE_ANALYTICS = 'UA-56998543-1'
 
 THEME = 'themes/pelican-chunk'
