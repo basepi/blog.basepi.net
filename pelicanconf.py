@@ -6,11 +6,12 @@ AUTHOR = u'Colton Myers'
 SITENAME = u'base pi'
 SITEURL = ''
 
+LOAD_CONTENT_CACHE = False
+
 # chunk theme
 SITESUBTITLE = 'because base ten is too boring'
 FOOTER_TEXT = 'Powered by <a href="http://getpelican.com">Pelican</a>'
 DISPLAY_CATEGORIES_ON_MENU = True
-LINKS = (('Site', 'http://url.com'), ('Site 2', 'http://another.url.com'))
 SINGLE_AUTHOR = True
 MINT = False
 GOOGLE_ANALYTICS = 'UA-56998543-1'
@@ -35,7 +36,7 @@ AUTHOR_FEED_RSS = None
 LINKS = (('Pelican', 'http://getpelican.com/'),
          ('Python.org', 'http://python.org/'),
          ('Jinja2', 'http://jinja.pocoo.org/'),
-         ('You can modify those links in your config file', '#'),)
+         )
 
 # Social widget
 SOCIAL = (('You can add links in your config file', '#'),
