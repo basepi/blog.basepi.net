@@ -1,2 +1,2 @@
-This is the source for [my blog](blog.basepi.net), statically generated using
-[Pelican](getpelicon.com).
+This is the source for [my blog](http://blog.basepi.net), statically generated
+using [Pelican](http://getpelicon.com).
