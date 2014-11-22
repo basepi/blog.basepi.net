@@ -10,7 +10,7 @@ env.deploy_path = 'output'
 DEPLOY_PATH = env.deploy_path
 
 # Remote server configuration
-production = 'www-data@blog.basepi.net:22'
+production = 'www-data@blog.basepi.net:29111'
 dest_path = '/var/www/blog.basepi.net'
 
 # Rackspace Cloud Files configuration settings
