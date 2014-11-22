@@ -4,10 +4,15 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Colton Myers'
 SITENAME = u'base pi'
-#SITEURL = 'http://blog.basepi.net'
+SITEURL = 'http://blog.basepi.net'
 
 # Change to False if there are caching issues
 LOAD_CONTENT_CACHE = True
+
+STATIC_PATHS = ['images', 'extra/favicon.png']
+EXTRA_PATH_METADATA = {
+    'extra/favicon.png': {'path': 'favicon.png'}
+}
 
 # chunk theme
 THEME = 'themes/pelican-chunk'
