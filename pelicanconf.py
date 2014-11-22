@@ -4,19 +4,23 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Colton Myers'
 SITENAME = u'base pi'
-SITEURL = ''
+#SITEURL = 'http://blog.basepi.net'
 
-LOAD_CONTENT_CACHE = False
+# Change to False if there are caching issues
+LOAD_CONTENT_CACHE = True
 
 # chunk theme
+THEME = 'themes/pelican-chunk'
 SITESUBTITLE = 'because base ten is too boring'
 FOOTER_TEXT = 'Powered by <a href="http://getpelican.com">Pelican</a>'
-DISPLAY_CATEGORIES_ON_MENU = True
+DISPLAY_CATEGORIES_ON_MENU = False
 SINGLE_AUTHOR = True
 MINT = False
 GOOGLE_ANALYTICS = 'UA-56998543-1'
 
-THEME = 'themes/pelican-chunk'
+DISQUS_SITENAME = 'blog-basepi-net'
+
+YEAR_ARCHIVE_SAVE_AS = 'archives/{date:%Y}/index.html'
 
 PATH = 'content'
 
@@ -26,21 +30,22 @@ DEFAULT_DATE_FORMAT = '%b %d %Y'
 DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
-FEED_ALL_ATOM = None
+FEED_ALL_RSS = 'rss.xml'
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),
+LINKS = (('Github', 'http://github.com/basepi'),
+         ('Twitter', 'http://twitter.com/basepi'),
          )
 
+TWITTER_USERNAME = 'basepi'
+
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+#SOCIAL = (('You can add links in your config file', '#'),
+#          ('Another social link', '#'),)
 
 DEFAULT_PAGINATION = 10
 

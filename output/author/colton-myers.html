@@ -24,10 +24,9 @@
 		<div id="menu">
 			<div class="menu-navigation-container">
 				<ul id="menu-navigation" class="menu">
-						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/category/blog.html">Blog</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://getpelican.com/">Pelican</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://python.org/">Python.org</a></li>
-						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/pages/archives.html">Archives</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://github.com/basepi">Github</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://twitter.com/basepi">Twitter</a></li>
 
 				</ul>
 			</div> <!--/#menu-navigation-container-->
@@ -41,7 +40,7 @@
 <div class="post type-post status-publish format-standard hentry category-general" id="post">
 	<div class="entry-meta">
 		<div class="date"><a href="/first-post.html">Nov 21 2014</a></div>
-			<span class="cat-links"><a href="/category/blog.html" title="View all posts in Blog" rel="category tag">Blog</a></span>
+			<div class="comments"><a href="/first-post.html#disqus_thread" title="Comment on First Post">comments</a></div>
 	</div> <!-- /#entry-meta -->
 	<div class="main">
 		<h2 class="entry-title">
@@ -68,7 +67,15 @@
 						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 					})();
 				</script>
-		</div><!-- /#footer -->
+<script type="text/javascript">
+    var disqus_shortname = 'blog-basepi-net';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>		</div><!-- /#footer -->
 	</div><!-- /#container -->
 	<div style="display:none"></div>
 </body>
