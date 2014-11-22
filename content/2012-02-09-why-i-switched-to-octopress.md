@@ -1,6 +1,12 @@
 Title: Why I switched to Octopress
 Date: 2012-02-09 18:33
+Modified: 2014-11-22 14:00
 Category: Blog
+
+Update, Nov 2014: Since I wrote this blog post, I have ditched Jekyll and
+Octopress (mostly because of the pain of setting up Ruby, not because of those
+pieces of software themselves). This blog is still static, but is now generated
+using Pelican, a Python project.
 
 The Problem
 -----------
