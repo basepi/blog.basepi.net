@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Colton Myers'
 SITENAME = u'base pi'
-SITEURL = 'http://blog.basepi.net'
+SITEURL = ''
 
 # Change to False if there are caching issues
 LOAD_CONTENT_CACHE = True

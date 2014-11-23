@@ -1,0 +1,48 @@
+==External Resources (General)==
+
+https://help.ubuntu.com/community/Servers -- Launching point to many Ubuntu server guides
+
+==Setting Up Users==
+
+;adduser {user}
+: adds new user, prompting for necessary info
+;addgroup {group}
+: adds new group.  Should add the "admin" group which generally defaults as sudoer group.
+;usermod -a -G {group} {user}
+: add {user} to {group}.  Add your new user to the "admin" group to get sudo
+
+==Setting up SSH==
+
+Use <code>ssh-copy-id</code> to copy your SSH ID from your local machine to the new server.  Then modify <code>/etc/ssh/sshd_config</code>:
+
+* Change "PermitRootLogin" to "no"
+* Change "PasswordAuthentication" to "no"
+* Change "Port" if non-standard port is desired
+
+==Install Some Packages==
+
+Good packages to install:
+
+* apache2
+* git
+* zsh
+* python
+* python3
+* mysql-server
+
+==Set Up Shell and Dotfiles==
+
+* Install git, python3, and zsh.
+* Clone git://github.com/basepi/dotfiles.git to some location.
+* Run the install.py file in the new repo
+* Run <code>chsh -s /bin/zsh</code> to change the default shell to zsh
+
+== Set up TimeZone ==
+
+* Run <code>dpkg-reconfigure tzdata</code> and choose America/Denver (for MST)
+
+== Set up Iptables ==
+
+* Check out previous servers for example of file that should go in <code>/etc/iptables</code>
+* Put the following line at the end of <code>/etc/network/interfaces</code> file: <code>pre-up iptables-restore < /etc/iptables</code>
+

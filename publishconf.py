@@ -7,14 +7,21 @@ from __future__ import unicode_literals
 
 import os
 import sys
+
+#sys.path.append(os.curdir)
+# This is the directory where your pelican's
+# configuration files reside
+pelicanpath = '/home/basepi/Dropbox/Blogs/blog.basepi.net'
+sys.path.append(pelicanpath)
+
 sys.path.append(os.curdir)
 from pelicanconf import *
 
 SITEURL = 'http://blog.basepi.net'
 RELATIVE_URLS = False
 
-FEED_ALL_ATOM = 'feeds/all.atom.xml'
-CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'
+FEED_ALL_ATOM = None
+CATEGORY_FEED_ATOM = None
 
 DELETE_OUTPUT_DIRECTORY = True
 
