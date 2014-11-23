@@ -46,6 +46,7 @@ LINKS = (
         ('RSS', 'http://blog.basepi.net/rss.xml'),
         ('Github', 'http://github.com/basepi'),
         ('Twitter', 'http://twitter.com/basepi'),
+        ('Personal Blog', 'http://blog.cmyers.net'),
 )
 
 TWITTER_USERNAME = 'basepi'
