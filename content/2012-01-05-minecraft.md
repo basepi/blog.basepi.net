@@ -1,6 +1,12 @@
 Title: Minecraft!!!
 Date: 2012-01-05 18:00
+Modified: 2014-11-23 03:00
 Category: Blog
+
+Update, November 2014: These days, I'm hosting my own vanilla minecraft server
+on Linode, using [MCMyAdmin][mcmyadmin] for a web interface.
+
+[mcmyadmin]: http://www.mcmyadmin.com
 
 I finally did it.  I broke down and rented a Minecraft server.
 
