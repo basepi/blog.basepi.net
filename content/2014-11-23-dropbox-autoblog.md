@@ -1,6 +1,7 @@
 Title: Blog Auto-Publish with Dropbox
 Date: 2014-11-23 03:00
 Category: Blog
+Tags: pelican, automation, tutorial, dropbox, blog
 
 This weekend I moved my blog over to [Pelican][pelican] from
 [Octopress][octopress]. I've been very happy with this decision.
