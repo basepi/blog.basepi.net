@@ -20,6 +20,7 @@ from pelicanconf import *
 SITEURL = 'http://blog.basepi.net'
 RELATIVE_URLS = False
 
+FEED_ALL_RSS = 'rss.xml'
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 

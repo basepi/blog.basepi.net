@@ -35,7 +35,7 @@ DEFAULT_DATE_FORMAT = '%b %d %Y'
 DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
-FEED_ALL_RSS = 'rss.xml'
+FEED_ALL_RSS = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
