@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'Colton Myers'
-SITENAME = u'base pi'
+SITENAME = u'basepi'
 SITEURL = ''
 
 # Change to False if there are caching issues
