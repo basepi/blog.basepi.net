@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Colton Myers'
 SITENAME = u'basepi'
-SITEURL = ''
+SITEURL = 'http://blog.basepi.net'
 
 # Change to False if there are caching issues
 LOAD_CONTENT_CACHE = True
@@ -29,13 +29,13 @@ YEAR_ARCHIVE_SAVE_AS = 'archives/{date:%Y}/index.html'
 
 PATH = 'content'
 
-TIMEZONE = 'Europe/Paris'
+TIMEZONE = 'America/Denver'
 
 DEFAULT_DATE_FORMAT = '%b %d %Y'
 DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
-FEED_ALL_RSS = None
+FEED_ALL_RSS = 'rss.xml'
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
@@ -46,7 +46,6 @@ LINKS = (
         ('RSS', 'http://blog.basepi.net/rss.xml'),
         ('Github', 'http://github.com/basepi'),
         ('Twitter', 'http://twitter.com/basepi'),
-        ('Personal Blog', 'http://blog.cmyers.net'),
 )
 
 TWITTER_USERNAME = 'basepi'
@@ -58,7 +57,7 @@ TWITTER_USERNAME = 'basepi'
 DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
-#RELATIVE_URLS = True
+RELATIVE_URLS = False
 
 ARTICLE_URL = '{date:%Y}/{date:%m}/{slug}/'
 ARTICLE_SAVE_AS = '{date:%Y}/{date:%m}/{slug}/index.html'
