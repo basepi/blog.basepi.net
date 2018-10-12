@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>basepi &mdash; Articles tagged pelican</title>
+		<meta charset="utf-8" />
+		<link rel="profile" href="https://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="https://basepi.github.io/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='https://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/atom+xml"
+			title="basepi — Flux Atom"
+			href="https://basepi.github.io/" /> 
+		<!--[if lte IE 8]><script src="https://basepi.github.io/theme/js/html5shiv.js"></script><![endif]-->
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<h1 id="site-title"><a href="https://basepi.github.io">basepi</a></h1>
+<h2 id="site-description">because base ten is too boring</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://blog.basepi.net/pages/archives">Archives</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://blog.basepi.net/rss.xml">RSS</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://github.com/basepi">Github</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://twitter.com/basepi">Twitter</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+<div class="page-title">
+	<h2>Tagged with <span>pelican</span> &hellip;</h2>
+</div>
+		</div>
+	
+		<div id="contents">
+<div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://basepi.github.io/2014/11/blog-auto-publish-with-dropbox/">Nov 23 2014</a></div>
+			<div class="comments"><a href="https://basepi.github.io/2014/11/blog-auto-publish-with-dropbox/#disqus_thread" title="Comment on Blog Auto-Publish with Dropbox">comments</a></div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://basepi.github.io/2014/11/blog-auto-publish-with-dropbox/" title="Permalink to Blog Auto-Publish with Dropbox" rel="bookmark">Blog Auto-Publish with Dropbox</a>
+		</h2>
+		<div class="entry-content">
+			<p>This weekend I moved my blog over to <a href="http://getpelican.com">Pelican</a> from
+<a href="http://octopress.org">Octopress</a>. I've been very happy with this decision.</p>
+<p>But I decided I wanted to go a step further, and set up autopublish. I knew it
+could be easily done with a git hook, but I wanted to be able to easily blog
+from my iOS devices as well, so I decided to go with <a href="https://db.tt/PNs6kv5z">Dropbox</a>
+instead.</p>
+<h1>Getting Dropbox</h1>
+<p>First, I needed to install Dropbox on my machine. Dropbox provides <a href="https://www.dropbox.com/install?os=lnx">an easy
+one-liner</a>:</p>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> ~ <span class="o">&amp;&amp;</span> wget -O - <span class="s2">&quot;https://www.dropbox.com/download?plat=lnx.x86_64&quot;</span> <span class="p">|</span> tar xzf -
+</pre></div>
+
+
+<p>Now, when I first tried to start up dropbox, it gave me a cryptic error, which
+I traced back to not having X11 libraries installed. Turns out I just needed
+to unset my DISPLAY variable:</p>
+<div class="highlight"><pre><span></span><span class="nb">unset</span> DISPLAY
+</pre></div>
+
+
+<p>Now Dropbox will start properly:</p>
+<div class="highlight"><pre><span></span>~/.dropbox-dist/dropboxd
+</pre></div>
+
+
+<p>Follow the instructions to get Dropbox authorized on your server, then once
+you see the success message, exit using ctrl-c.</p>
+<h2>Configure Dropbox as System Service</h2>
+<p>Next we need to create an init script for Dropbox. I found an example
+<a href="http://www.dropboxwiki.com/tips-and-tricks/install-dropbox-in-an-entirely-text-based-linux-environment#Running_on_system_startup">here</a>. Here's the Ubuntu/Debian script:</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="c1">#dropbox service</span>
+<span class="nv">DROPBOX_USERS</span><span class="o">=</span><span class="s2">&quot;user1 user2&quot;</span>
+
+<span class="nv">DAEMON</span><span class="o">=</span>.dropbox-dist/dropboxd
+
+start<span class="o">()</span> <span class="o">{</span>
+   <span class="nb">echo</span> <span class="s2">&quot;Starting dropbox...&quot;</span>
+   <span class="k">for</span> dbuser in <span class="nv">$DROPBOX_USERS</span><span class="p">;</span> <span class="k">do</span>
+       <span class="nv">HOMEDIR</span><span class="o">=</span><span class="sb">`</span>getent passwd <span class="nv">$dbuser</span> <span class="p">|</span> cut -d: -f6<span class="sb">`</span>
+       <span class="k">if</span> <span class="o">[</span> -x <span class="nv">$HOMEDIR</span>/<span class="nv">$DAEMON</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+           <span class="nv">HOME</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOMEDIR</span><span class="s2">&quot;</span> start-stop-daemon -b -o -c <span class="nv">$dbuser</span> -S -u <span class="nv">$dbuser</span> -x <span class="nv">$HOMEDIR</span>/<span class="nv">$DAEMON</span>
+       <span class="k">fi</span>
+   <span class="k">done</span>
+<span class="o">}</span>
+
+stop<span class="o">()</span> <span class="o">{</span>
+   <span class="nb">echo</span> <span class="s2">&quot;Stopping dropbox...&quot;</span>
+   <span class="k">for</span> dbuser in <span class="nv">$DROPBOX_USERS</span><span class="p">;</span> <span class="k">do</span>
+       <span class="nv">HOMEDIR</span><span class="o">=</span><span class="sb">`</span>getent passwd <span class="nv">$dbuser</span> <span class="p">|</span> cut -d: -f6<span class="sb">`</span>
+       <span class="k">if</span> <span class="o">[</span> -x <span class="nv">$HOMEDIR</span>/<span class="nv">$DAEMON</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+           start-stop-daemon -o -c <span class="nv">$dbuser</span> -K -u <span class="nv">$dbuser</span> -x <span class="nv">$HOMEDIR</span>/<span class="nv">$DAEMON</span>
+       <span class="k">fi</span>
+   <span class="k">done</span>
+<span class="o">}</span>
+
+status<span class="o">()</span> <span class="o">{</span>
+   <span class="k">for</span> dbuser in <span class="nv">$DROPBOX_USERS</span><span class="p">;</span> <span class="k">do</span>
+       <span class="nv">dbpid</span><span class="o">=</span><span class="sb">`</span>pgrep -u <span class="nv">$dbuser</span> dropbox<span class="sb">`</span>
+       <span class="k">if</span> <span class="o">[</span> -z <span class="nv">$dbpid</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+           <span class="nb">echo</span> <span class="s2">&quot;dropboxd for USER </span><span class="nv">$dbuser</span><span class="s2">: not running.&quot;</span>
+       <span class="k">else</span>
+           <span class="nb">echo</span> <span class="s2">&quot;dropboxd for USER </span><span class="nv">$dbuser</span><span class="s2">: running (pid </span><span class="nv">$dbpid</span><span class="s2">)&quot;</span>
+       <span class="k">fi</span>
+   <span class="k">done</span>
+<span class="o">}</span>
+
+<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> in
+
+   start<span class="o">)</span>
+       start
+       <span class="p">;;</span>
+   stop<span class="o">)</span>
+       stop
+       <span class="p">;;</span>
+   restart<span class="p">|</span>reload<span class="p">|</span>force-reload<span class="o">)</span>
+       stop
+       start
+       <span class="p">;;</span>
+   status<span class="o">)</span>
+       status
+       <span class="p">;;</span>
+   *<span class="o">)</span>
+       <span class="nb">echo</span> <span class="s2">&quot;Usage: /etc/init.d/dropbox {start|stop|reload|force-reload|restart|status}&quot;</span>
+       <span class="nb">exit</span> <span class="m">1</span>
+
+<span class="k">esac</span>
+
+<span class="nb">exit</span> <span class="m">0</span>
+</pre></div>
+
+
+<p>Note that when I pulled down that script originally, it had a typo. The DAEMON
+line near the top of the file should be <code>.dropbox-dist/dropboxd</code> -- they left
+off the trailing <code>d</code> in the version I downloaded.</p>
+<p>Place this script in <code>/etc/init.d/dropbox</code>. Replace the <code>DROPBOX_USERS</code> setting
+with a space-separate list of users for which you want Dropbox running. Then,
+make the file executable and set it to execute on startup:</p>
+<div class="highlight"><pre><span></span>sudo chmod +x /etc/init.d/dropbox
+sudo update-rc.d dropbox defaults
+</pre></div>
+
+
+<p>Now, start Dropbox again, as a service:</p>
+<div class="highlight"><pre><span></span>sudo service dropbox start
+</pre></div>
+
+
+<h2>Selective Sync (Optional)</h2>
+<p>I have a very large Dropbox folder, and so only want to sync the Blogs folder
+from my Dropbox account.</p>
+<p>I downloaded the CLI script mentioned on that installation page:</p>
+<div class="highlight"><pre><span></span>wget https://linux.dropbox.com/packages/dropbox.py
+</pre></div>
+
+
+<p>Then, with Dropbox running, I excluded all the directories within the Dropbox
+folder, then removed the Blogs folder from the resulting exclusion list:</p>
+<div class="highlight"><pre><span></span>./dropbox.py exclude add ~/Dropbox/*
+./dropbox.py exclude remove ~/Dropbox/blogs
+</pre></div>
+
+
+<p>Perfect, now I have only my blogs syncing to my server's dropbox folder.</p>
+<h1>Autopublish: The Watcher Script</h1>
+<p>The automagic regeneration of my blog I modified from <a href="http://code.zoia.org/2014/02/25/pelican-dropbox-automatic-blog-regeneration/">this post</a>.</p>
+<p>I'm going to assume you have a working Pelican setup. Assuming you used the
+Pelican quickstart, you should have both a <code>pelicanconf.py</code> and a
+<code>publishconf.py</code>. The <code>publishconf.py</code> is going to be what we use.</p>
+<p>First, you must modify your <code>publishconf.py</code> file such that it can operate from
+any directory, rather than relying on relative paths. Thus, you should add your
+blog's absolute directory to the Python path inside of that script. Here is my
+<code>publishconf.py</code>:</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*- #</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+
+<span class="c1"># This file is only used if you use `make publish` or</span>
+<span class="c1"># explicitly specify it as your config file.</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1">#sys.path.append(os.curdir)</span>
+<span class="c1"># This is the directory where your pelican&#39;s</span>
+<span class="c1"># configuration files reside</span>
+<span class="n">pelicanpath</span> <span class="o">=</span> <span class="s1">&#39;/home/basepi/Dropbox/Blogs/blog.basepi.net&#39;</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pelicanpath</span><span class="p">)</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">curdir</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pelicanconf</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">SITEURL</span> <span class="o">=</span> <span class="s1">&#39;http://blog.basepi.net&#39;</span>
+<span class="n">RELATIVE_URLS</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="n">FEED_ALL_ATOM</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">CATEGORY_FEED_ATOM</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="n">DELETE_OUTPUT_DIRECTORY</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+
+
+<p>These are the key lines:</p>
+<div class="highlight"><pre><span></span><span class="n">pelicanpath</span> <span class="o">=</span> <span class="s1">&#39;/home/basepi/Dropbox/Blogs/blog.basepi.net&#39;</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pelicanpath</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Now no matter what my current working directory is, the <code>publishconf.py</code> will
+be able to find the files it needs to operate.</p>
+<p>Next, I created a publish script, <code>publish.sh</code>:</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">PELICAN</span><span class="o">=</span>/usr/bin/pelican
+<span class="nv">CONTENT</span><span class="o">=</span>/home/basepi/Dropbox/Blogs/blog.basepi.net/content
+<span class="nv">OUTPUT</span><span class="o">=</span>/home/basepi/Dropbox/Blogs/blog.basepi.net/output
+<span class="nv">SETTINGS</span><span class="o">=</span>/home/basepi/Dropbox/Blogs/blog.basepi.net/publishconf.py
+
+rm -rf /home/basepi/Dropbox/Blogs/blog.basepi.net/output/*
+<span class="nv">$PELICAN</span> <span class="nv">$CONTENT</span> -o <span class="nv">$OUTPUT</span> -s <span class="nv">$SETTINGS</span> <span class="o">||</span> <span class="nb">exit</span> <span class="nv">$?</span>
+rsync -r --delete /home/basepi/Dropbox/Blogs/blog.basepi.net/output/ /var/www/blog.basepi.net
+</pre></div>
+
+
+<p>Note the use of <code>|| exit $?</code>. This will cause the script to exit if the retcode
+of the pelican command is non-zero. I don't want to publish my blog if there
+are problems.</p>
+<p>Make this script executable, and then run it to test that things are working.</p>
+<p>The final step is to set up the watcher script which will run our publish
+script on changes. For this purpose we will be using <a href="https://github.com/splitbrain/Watcher">this watcher
+script</a>.</p>
+<p>This script, conveniently, is ready to be used as an init script. Take <a href="https://raw.githubusercontent.com/splitbrain/Watcher/master/watcher.py">the
+script</a> and put it at <code>/etc/init.d/watcher</code>. Make it executable:</p>
+<div class="highlight"><pre><span></span>sudo chmod +x /etc/init.d/watcher
+</pre></div>
+
+
+<p>Now, we need to create the configuration file for the watcher. This file is at
+<code>/etc/watcher.ini</code>:</p>
+<div class="highlight"><pre><span></span><span class="o">[</span>DEFAULT<span class="o">]</span>
+
+<span class="p">;</span> where to store output
+<span class="nv">logfile</span><span class="o">=</span>/var/log/watcher.log
+
+<span class="p">;</span> where to save the PID file
+<span class="nv">pidfile</span><span class="o">=</span>/var/run/watcher.pid
+
+<span class="o">[</span>job1<span class="o">]</span>
+<span class="nv">watch</span><span class="o">=</span>/home/basepi/Dropbox/Blogs/blog.basepi.net/content
+<span class="nv">events</span><span class="o">=</span>modify,create,delete,move
+<span class="nv">excluded</span><span class="o">=</span>
+<span class="nv">recursive</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">autoadd</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">command</span><span class="o">=</span>/home/basepi/Dropbox/Blogs/blog.basepi.net/publish.sh
+</pre></div>
+
+
+<p>Now we just need to start the watcher:</p>
+<div class="highlight"><pre><span></span>sudo service watcher start
+</pre></div>
+
+
+<p>You can tail the log to see if it's working (change a file to trigger it):</p>
+<div class="highlight"><pre><span></span>tail -f /var/log/watcher.log
+</pre></div>
+
+
+<p>If everything is in order, just have the watcher start on boot:</p>
+<div class="highlight"><pre><span></span>sudo update-rc.d watcher defaults
+</pre></div>
+
+
+<p>And you're done! Now, any time you change the content of your blog, it will be
+automatically re-built and published for you!</p>
+<p>Let me know what you think in the comments. Or hit me up <a href="http://twitter.com/basepi">on Twitter</a>!</p>
+		</div> <!--/#entry-content-->
+    		<span class="tag-links"><strong>Tagged</strong>
+ <a href="https://basepi.github.io/tag/automation.html" rel="tag">automation</a>,  <a href="https://basepi.github.io/tag/blog.html" rel="tag">blog</a>,  <a href="https://basepi.github.io/tag/dropbox.html" rel="tag">dropbox</a>,  <a href="https://basepi.github.io/tag/pelican.html" rel="tag">pelican</a>,  <a href="https://basepi.github.io/tag/tutorial.html" rel="tag">tutorial</a>    		</span>
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="navigation">
+</div>
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://getpelican.com">Pelican</a></p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-56998543-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+				</script>
+<script type="text/javascript">
+    var disqus_shortname = 'blog-basepi-net';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

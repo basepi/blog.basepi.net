@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>basepi &mdash; Why I switched to Octopress</title>
+		<meta charset="utf-8" />
+		<link rel="profile" href="https://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="https://basepi.github.io/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='https://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/atom+xml"
+			title="basepi — Flux Atom"
+			href="https://basepi.github.io/" /> 
+		<!--[if lte IE 8]><script src="https://basepi.github.io/theme/js/html5shiv.js"></script><![endif]-->
+</head>
+
+<body class="home blog custom-background single-author" >
+	<div id="container">
+		<div id="header">
+				<h1 id="site-title"><a href="https://basepi.github.io">basepi</a></h1>
+<h2 id="site-description">because base ten is too boring</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://blog.basepi.net/pages/archives">Archives</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://blog.basepi.net/rss.xml">RSS</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://github.com/basepi">Github</a></li>
+						<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://twitter.com/basepi">Twitter</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://basepi.github.io/2012/02/why-i-switched-to-octopress/">Feb 09 2012</a></div>
+			<div class="comments"><a href="https://basepi.github.io/2012/02/why-i-switched-to-octopress/#disqus_thread" title="Comment on Why I switched to Octopress">comments</a></div>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://basepi.github.io/2012/02/why-i-switched-to-octopress/" title="Permalink to Why I switched to Octopress" rel="bookmark">Why I switched to Octopress</a>
+		</h2>
+		<div class="entry-content">
+			<p>Update, Nov 2014: Since I wrote this blog post, I have ditched Jekyll and
+Octopress (mostly because of the pain of setting up Ruby, not because of those
+pieces of software themselves). This blog is still static, but is now generated
+using Pelican, a Python project.</p>
+<h2>The Problem</h2>
+<p>Last week I received an e-mail from the RSA Anti-Fraud Command Center.
+It related to <a href="http://blog.cmyers.net/">my personal blog</a>:</p>
+<blockquote>
+<p>It appears that your website cmyers.net has been hacked by a fraudster.  It
+is now hosting a phishing attack against RBC.  Please remove the fraudulent
+folders/files as soon as possible and secure your website as it has been
+compromised.  Please note that it is possible that the fraudulent content is
+embedded in your website's legitimate files.</p>
+</blockquote>
+<p>Great.</p>
+<p>It turns out the claim was in fact true.  There were new files in my wp-admin
+folder for my wordpress install.  When I loaded these files in a browser, it
+looked like the home page for a bank.</p>
+<p>I had been hacked.</p>
+<p>Turns out it's actually quite a common thing.  WordPress is a common (and
+apparently quite easy) target for these types of hacks.  It comes down to a
+combination of it's popularity, lack of really security-centric design, and the
+fact that it's written in PHP.</p>
+<p>I considered a few options.  Do I take the time to properly harden my PHP5
+install and reinstall wordpress?  Or do I change systems?</p>
+<h2>Enter Jekyll</h2>
+<p><a href="http://blog.errstr.com/">My friend Andrew generates his blog</a> using jekyll.  <a href="https://github.com/mojombo/jekyll/wiki">Jekyll</a> is a
+"simple, blog aware, static site generator."  It's super-cool, check it out.
+However, unlike WordPress, it doesn't have a bunch of built-in themes, or even
+a theme directory that I could find.  You have to write your own CSS and HTML
+templates, which it uses to generate the site.  But it generates an almost
+completely static site -- the exception would be if you build in functionality
+for <a href="http://disqus.com/">Disqus</a> comments or put your Twitter roll in the sidebar.</p>
+<p>If I was going to switch systems, static is what I was looking for.  The
+resulting site is much faster than a WordPress site, and much more secure.  But
+I didn't have the time, knowledge, or creativity to create a theme from
+scratch, and porting my theme from WordPress would be a many hour project.</p>
+<h2>Enter Octopress</h2>
+<p>Then I received a tweet from my friend <a href="https://twitter.com/#!/julio_menendez">Julio</a> that said to check out
+<a href="http://octopress.org/">Octopress</a>.  It's built on top of Jekyll with built-in support for great
+syntax highlighting, Disqus comments, social integration -- everything I was
+looking for.  And a great default theme, which I could use as a jumping point
+for my own.  I was sold.</p>
+<p>The rest is history.  I'll spell out the details in my next post.</p>
+		</div> <!--/#entry-content-->
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+	<div id="comments">
+		<div id="respond">
+			<div id="disqus_thread"></div>
+	        <script type="text/javascript">
+	            var disqus_shortname = 'blog-basepi-net';
+	
+	            /* * * DON'T EDIT BELOW THIS LINE * * */
+	            (function() {
+	                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	                dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+	                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	            })();
+	        </script>
+	        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	        <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		</div><!-- #respond -->					
+</div><!-- #comments -->
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://getpelican.com">Pelican</a></p>
+				<script type="text/javascript">
+					var _gaq = _gaq || [];
+					_gaq.push(['_setAccount', 'UA-56998543-1']);
+					_gaq.push(['_trackPageview']);
+					(function() {
+						var ga = document.createElement('script'); 
+						ga.type = 'text/javascript'; ga.async = true;
+						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					})();
+				</script>
+<script type="text/javascript">
+    var disqus_shortname = 'blog-basepi-net';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>
