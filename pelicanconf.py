@@ -43,9 +43,10 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (
-        ('RSS', 'http://blog.basepi.net/rss.xml'),
-        ('Github', 'http://github.com/basepi'),
-        ('Twitter', 'http://twitter.com/basepi'),
+        ('Archives', 'https://blog.basepi.net/pages/archives'),
+        ('RSS', 'https://blog.basepi.net/rss.xml'),
+        ('Github', 'https://github.com/basepi'),
+        ('Twitter', 'https://twitter.com/basepi'),
 )
 
 TWITTER_USERNAME = 'basepi'
