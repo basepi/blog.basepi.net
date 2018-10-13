@@ -9,9 +9,10 @@ SITEURL = 'https://blog.basepi.net'
 # Change to False if there are caching issues
 LOAD_CONTENT_CACHE = True
 
-STATIC_PATHS = ['images', 'extra/favicon.png']
+STATIC_PATHS = ['images', 'extra/favicon.png', 'extra/CNAME']
 EXTRA_PATH_METADATA = {
-    'extra/favicon.png': {'path': 'favicon.png'}
+    'extra/favicon.png': {'path': 'favicon.png'},
+    'extra/CNAME': {'path': 'CNAME'},
 }
 
 # chunk theme
