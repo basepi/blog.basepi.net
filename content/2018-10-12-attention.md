@@ -1,7 +1,7 @@
 Title: On Attention
 Date: 2018-10-12
 Category: Blog
-Status: draft
+Status: published
 
 In recent years, I have struggled with my attention. I have struggled to focus
 on much of anything in my life. I haven't been able to read books quickly or
