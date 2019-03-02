@@ -17,7 +17,7 @@ sys.path.append(pelicanpath)
 sys.path.append(os.curdir)
 from pelicanconf import *
 
-SITEURL = 'http://blog.basepi.net'
+SITEURL = 'https://blog.basepi.net'
 RELATIVE_URLS = False
 
 FEED_ALL_RSS = 'rss.xml'
